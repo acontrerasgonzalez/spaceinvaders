@@ -5,6 +5,7 @@ class Marciano{
         this.x=x;
         this.y=y;
         this.vel=50;
+        this.colision=false;
         this.marc.setAttribute(("id"),this.id);
         this.marc.setAttribute(("x"),this.x+"px");
         this.marc.setAttribute(("y"),this.y+"px");
@@ -33,5 +34,27 @@ class Marciano{
     }*/
     dispara(){
 
+    }
+    detectaColision(objeto){
+        if(objeto.x==this.x){
+            if(objeto.y==this.y){
+                this.colision=true;
+            }
+        }
+    }
+}
+class Nave{
+    constructor(){
+        this.marc=document.createElementNS("http://www.w3.org/2000/svg","rect");
+        this.id=id;
+        this.x=x;
+        this.y=y;
+        this.vel=50;
+        this.marc.setAttribute(("id"),this.id);
+        this.marc.setAttribute(("x"),this.x+"px");
+        this.marc.setAttribute(("y"),this.y+"px");
+        this.marc.setAttribute(("width"),150+"px");
+        this.marc.setAttribute(("height"),50+"px");
+        document.getElementById("contsvg").appendChild(this.marc);
     }
 }
