@@ -36,8 +36,8 @@ class Marciano{
 
     }
     detectaColision(objeto){
-        if(objeto.x==this.x){
-            if(objeto.y==this.y){
+        if(this.x>=objeto.x && this.x+50<=objeto.x){
+            if(this.y>=objeto.y && this.y+50<=objeto.y){
                 this.colision=true;
             }
         }
@@ -45,16 +45,33 @@ class Marciano{
 }
 class Nave{
     constructor(){
-        this.marc=document.createElementNS("http://www.w3.org/2000/svg","rect");
+        this.nave=document.createElementNS("http://www.w3.org/2000/svg","rect");
         this.id=id;
         this.x=x;
         this.y=y;
         this.vel=50;
-        this.marc.setAttribute(("id"),this.id);
-        this.marc.setAttribute(("x"),this.x+"px");
-        this.marc.setAttribute(("y"),this.y+"px");
-        this.marc.setAttribute(("width"),150+"px");
-        this.marc.setAttribute(("height"),50+"px");
-        document.getElementById("contsvg").appendChild(this.marc);
+        this.nave.setAttribute(("id"),this.id);
+        this.nave.setAttribute(("x"),this.x+"px");
+        this.nave.setAttribute(("y"),this.y+"px");
+        this.nave.setAttribute(("width"),150+"px");
+        this.nave.setAttribute(("height"),50+"px");
+        document.getElementById("contsvg").appendChild(this.nave);
+    }
+    dispara(){
+
+    }
+    moverIzq(){
+        if(this.x-10>=0){
+            this.x-=10;
+        }
+    }
+    moverDrch(){
+        if(this.x+150+10<=document.getElementById("contsvg").getAttribute("width")){
+            this.x+=10;
+        }
+    }
+    dibuja(){
+        this.nave.setAttribute(("width"),this.x+"px");
+        this.nave.setAttribute(("height"),this.y+"px");
     }
 }
