@@ -12,13 +12,15 @@ class Marciano{
         this.marc.setAttribute(("height"),50+"px");
         document.getElementById("contsvg").appendChild(this.marc);
     }
+    /*ya que el movimiento se produce sobre un bloque de marcianos va a ser un metodo de la clase
+    juego
     mueve(){//movimiento fijo de 10px si llega al final salta de linea 
         if((this.x+vel)<document.getElementById("contsvg").getAttribute("width")){
             this.x+=vel;
         }else
         if((this.x+vel)>=document.getElementById("contsvg").getAttribute("width")){
-            this.y+=vel;
-            this.x=0;
+            this.y+=50;
+            this.cambioDireccion();
         }
     }
     dibuja(){
@@ -26,10 +28,10 @@ class Marciano{
         marciano.setAttribute(("x"),this.x+"px");
         marciano.setAttribute(("y"),this.y+"px");
     }
-    dispara(){
-
-    }
     cambioDireccion(){
         this.vel=-this.vel;
+    }*/
+    dispara(){
+
     }
 }
