@@ -75,3 +75,27 @@ class Nave{
         this.nave.setAttribute(("height"),this.y+"px");
     }
 }
+class Disparo{
+    constructor(id,x,y,r){
+        this.disparo=document.createElementNS("http://www.w3.org/2000/svg","circle");
+        this.id=id;
+        this.x=x;
+        this.y=y;
+        this.vel=50;
+        this.r=r;
+        this.disparo.setAttribute(("id"),this.id);
+        this.disparo.setAttribute(("x"),this.x+"px");
+        this.disparo.setAttribute(("y"),this.y+"px");
+        this.disparo.setAttribute(("r"),this.r);
+        this.disparo.setAttribute(("fill"), "red");
+        document.getElementById("contsvg").appendChild(this.disparo);
+    }
+    avanzaArriba(){
+        this.y=this.y+this.vel;
+        this.disparo.setAttribute(("y"),this.y+"px");
+    }
+    avanzaAbajo(){
+        this.y=this.y-this.vel;
+        this.disparo.setAttribute(("y"),this.y+"px");
+    }
+}
