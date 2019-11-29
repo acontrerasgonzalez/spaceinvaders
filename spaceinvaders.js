@@ -36,8 +36,14 @@ class Marciano{
 
     }
     detectaColision(objeto){
-        if(this.x>=objeto.x && this.x+50<=objeto.x){
-            if(this.y>=objeto.y && this.y+50<=objeto.y){
+        //if(this.x>=objeto.x && this.x+50<=objeto.x){
+        //    if(this.y>=objeto.y && this.y+50<=objeto.y){
+        //        this.colision=true;
+        //    }
+        //}
+        //ARREGLO
+        if(this.x<=objeto.x && this.x+50>=objeto.x){
+            if(this.y<=objeto.y && this.y+50>=objeto.y){
                 this.colision=true;
             }
         }
@@ -61,18 +67,29 @@ class Nave{
 
     }
     moverIzq(){
-        if(this.x-10>=0){
-            this.x-=10;
+        //if(this.x-10>=0){
+        //    this.x-=10;
+        //}
+        //ARREGLO
+        if(this.x-this.vel>=0){
+            this.x-=this.vel;
         }
     }
     moverDrch(){
-        if(this.x+150+10<=document.getElementById("contsvg").getAttribute("width")){
-            this.x+=10;
+        //if(this.x+150+10<=document.getElementById("contsvg").getAttribute("width")){
+        //    this.x+=10;
+        //}
+        //ARREGLO
+        if(this.x+150+this.vel<=document.getElementById("contsvg").getAttribute("width")){
+            this.x+=this.vel;
         }
     }
     dibuja(){
-        this.nave.setAttribute(("width"),this.x+"px");
-        this.nave.setAttribute(("height"),this.y+"px");
+        //this.nave.setAttribute(("width"),this.x+"px");
+        //this.nave.setAttribute(("height"),this.y+"px");
+        //ARREGLO
+        this.nave.setAttribute(("x"),this.x+"px");
+        this.nave.setAttribute(("y"),this.y+"px");
     }
 }
 class Disparo{
