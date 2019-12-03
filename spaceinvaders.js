@@ -46,11 +46,11 @@ class Marciano{
             if(this.y<=objeto.y && this.y+50>=objeto.y){
                 this.colision=true;
             }
-        }
+             }
     }
 }
 class Nave{
-    constructor(){
+    constructor(id,x,y){
         this.nave=document.createElementNS("http://www.w3.org/2000/svg","rect");
         this.id=id;
         this.x=x;
@@ -71,8 +71,10 @@ class Nave{
         //    this.x-=10;
         //}
         //ARREGLO
-        if(this.x-this.vel>=0){
+        if(this.x-this.vel>0){
             this.x-=this.vel;
+        }else{
+            this.vel=-this.vel;
         }
     }
     moverDrch(){
@@ -80,8 +82,17 @@ class Nave{
         //    this.x+=10;
         //}
         //ARREGLO
-        if(this.x+150+this.vel<=document.getElementById("contsvg").getAttribute("width")){
+        if(this.x+150+this.vel<document.getElementById("contsvg").getAttribute("width")){
             this.x+=this.vel;
+        }else{
+            this.vel=-this.vel;
+        }
+    }
+    mover(){//se va a mover solo asi que un metodo pa to
+        if(this.vel>=0){
+            this.moverDrch();
+        }else{
+            this.moverIzq();
         }
     }
     dibuja(){
@@ -114,5 +125,19 @@ class Disparo{
     avanzaAbajo(){
         this.y=this.y-this.vel;
         this.disparo.setAttribute(("y"),this.y+"px");
+    }
+}
+class Juego{
+    constructor(){
+        this.marcianos=[];
+        for(i=0;i<15;i++){
+            this.marcianos[i]=new Marciano("marciano"+i,0,0);
+        }
+        this.nave=new Nave("nave",500,800);
+    }
+    empezar(){
+        setInterval(()=>{
+            this.nave.mover();           
+        },100);
     }
 }
