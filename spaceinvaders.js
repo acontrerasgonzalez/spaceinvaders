@@ -98,6 +98,19 @@ class Nave{
         this.nave.setAttribute(("x"),this.x+"px");
         this.nave.setAttribute(("y"),this.y+"px");
     }
+    detectaColision(objeto){
+        //if(this.x>=objeto.x && this.x+50<=objeto.x){
+        //    if(this.y>=objeto.y && this.y+50<=objeto.y){
+        //        this.colision=true;
+        //    }
+        //}
+        //ARREGLO
+        if(this.x<=objeto.x && this.x+150>=objeto.x){
+            if(this.y<=objeto.y && this.y+50>=objeto.y){
+                this.colision=true;
+            }
+        }
+    }
 }
 class Disparo{
     constructor(id,x,y,r){
@@ -122,6 +135,10 @@ class Disparo{
         this.disparo.setAttribute(("y"),this.y+"px");
     }
 }
+<<<<<<< HEAD
+
+class Juego
+=======
 class Juego{
     constructor(){
         this.marcianos=[];
@@ -146,4 +163,8 @@ class Juego{
         
     }
 }
+<<<<<<< HEAD
 var juego = new Juego();
+=======
+>>>>>>> 23edb1d0899e3cf7dec6c422c8f3f4869c197caa
+>>>>>>> 35cad05b232e0b595854a6bf4575cd3fc4e0aab7
