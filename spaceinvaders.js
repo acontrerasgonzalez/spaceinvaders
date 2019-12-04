@@ -91,6 +91,19 @@ class Nave{
         this.nave.setAttribute(("x"),this.x+"px");
         this.nave.setAttribute(("y"),this.y+"px");
     }
+    detectaColision(objeto){
+        //if(this.x>=objeto.x && this.x+50<=objeto.x){
+        //    if(this.y>=objeto.y && this.y+50<=objeto.y){
+        //        this.colision=true;
+        //    }
+        //}
+        //ARREGLO
+        if(this.x<=objeto.x && this.x+150>=objeto.x){
+            if(this.y<=objeto.y && this.y+50>=objeto.y){
+                this.colision=true;
+            }
+        }
+    }
 }
 class Disparo{
     constructor(id,x,y,r){
@@ -116,3 +129,5 @@ class Disparo{
         this.disparo.setAttribute(("y"),this.y+"px");
     }
 }
+
+class Juego
