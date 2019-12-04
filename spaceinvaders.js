@@ -72,7 +72,7 @@ class Nave{
         //}
         //ARREGLO
         if(this.x-this.vel>0){
-            this.x-=this.vel;
+            this.x+=this.vel;
         }else{
             this.vel=-this.vel;
         }
@@ -132,8 +132,10 @@ class Juego{
         this.marcianos=[];
         for(i=0;i<15;i++){
             this.marcianos[i]=new Marciano("marciano"+i,0,0);
+            document.getElementById("contenedor").appendChild(this.marcianos[i]);
         }
         this.nave=new Nave("nave",500,800);
+        document.getElementById("contenedor").appendChild(this.nave.nave);
     }
     empezar(){
         setInterval(()=>{
