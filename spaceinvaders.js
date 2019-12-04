@@ -9,9 +9,9 @@ class Marciano{
         this.marc.setAttribute(("id"),this.id);
         this.marc.setAttribute(("x"),this.x+"px");
         this.marc.setAttribute(("y"),this.y+"px");
+        this.marc.setAttribute(("fill"),"green");
         this.marc.setAttribute(("width"),50+"px");
         this.marc.setAttribute(("height"),50+"px");
-        document.getElementById("contsvg").appendChild(this.marc);
     }
     /*ya que el movimiento se produce sobre un bloque de marcianos va a ser un metodo de la clase
     juego
@@ -59,9 +59,9 @@ class Nave{
         this.nave.setAttribute(("id"),this.id);
         this.nave.setAttribute(("x"),this.x+"px");
         this.nave.setAttribute(("y"),this.y+"px");
+        this.marc.setAttribute(("fill"),"blue");
         this.nave.setAttribute(("width"),150+"px");
         this.nave.setAttribute(("height"),50+"px");
-        document.getElementById("contsvg").appendChild(this.nave);
     }
     dispara(){
 
@@ -72,9 +72,7 @@ class Nave{
         //}
         //ARREGLO
         if(this.x-this.vel>0){
-            this.x+=this.vel;
-        }else{
-            this.vel=-this.vel;
+            this.x-=this.vel;
         }
     }
     moverDrch(){
@@ -84,8 +82,6 @@ class Nave{
         //ARREGLO
         if(this.x+150+this.vel<document.getElementById("contsvg").getAttribute("width")){
             this.x+=this.vel;
-        }else{
-            this.vel=-this.vel;
         }
     }
     mover(){//se va a mover solo asi que un metodo pa to
@@ -116,7 +112,6 @@ class Disparo{
         this.disparo.setAttribute(("y"),this.y+"px");
         this.disparo.setAttribute(("r"),this.r);
         this.disparo.setAttribute(("fill"), "red");
-        document.getElementById("contsvg").appendChild(this.disparo);
     }
     avanzaArriba(){
         this.y=this.y+this.vel;
@@ -132,14 +127,23 @@ class Juego{
         this.marcianos=[];
         for(i=0;i<15;i++){
             this.marcianos[i]=new Marciano("marciano"+i,0,0);
-            document.getElementById("contenedor").appendChild(this.marcianos[i]);
+            document.getElementById("contenedor").appendChild(this.marcianos[i].marc);
         }
         this.nave=new Nave("nave",500,800);
+        this.nave.dibuja();
         document.getElementById("contenedor").appendChild(this.nave.nave);
+        document.body.addEventListener("keydown",(event)=>{
+            if(event.keyCode==37){
+                this.nave.moverIzq();
+                this.nave.dibuja();
+            }else if(event.keyCode==39){
+                this.nave.moverDrch();
+                this.nave.dibuja();
+            }
+        })
     }
     empezar(){
-        setInterval(()=>{
-            this.nave.mover();           
-        },100);
+        
     }
 }
+var juego = new Juego();
