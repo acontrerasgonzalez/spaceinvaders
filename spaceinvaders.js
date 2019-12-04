@@ -14,12 +14,12 @@ class Marciano{
         this.marc.setAttribute(("height"),50+"px");
     }
     /*ya que el movimiento se produce sobre un bloque de marcianos va a ser un metodo de la clase
-    juego
+    juego*/
     mueve(){//movimiento fijo de 10px si llega al final salta de linea 
-        if((this.x+vel)<document.getElementById("contsvg").getAttribute("width")){
-            this.x+=vel;
+        if((this.x+this.vel)<=document.getElementById("contenedor").getAttribute("width")){
+            this.x+=this.vel;
         }else
-        if((this.x+vel)>=document.getElementById("contsvg").getAttribute("width")){
+        if((this.x+this.vel)>=document.getElementById("contenedor").getAttribute("width")){
             this.y+=50;
             this.cambioDireccion();
         }
@@ -31,7 +31,7 @@ class Marciano{
     }
     cambioDireccion(){
         this.vel=-this.vel;
-    }*/
+    }
     dispara(){
 
     }
@@ -55,12 +55,12 @@ class Nave{
         this.id=id;
         this.x=x;
         this.y=y;
-        this.vel=50;
+        this.vel=20;
         this.nave.setAttribute(("id"),this.id);
         this.nave.setAttribute(("x"),this.x+"px");
         this.nave.setAttribute(("y"),this.y+"px");
-        this.marc.setAttribute(("fill"),"blue");
-        this.nave.setAttribute(("width"),150+"px");
+        this.nave.setAttribute(("fill"),"blue");
+        this.nave.setAttribute(("width"),140+"px");
         this.nave.setAttribute(("height"),50+"px");
     }
     dispara(){
@@ -71,7 +71,7 @@ class Nave{
         //    this.x-=10;
         //}
         //ARREGLO
-        if(this.x-this.vel>0){
+        if(this.x-this.vel>=0){
             this.x-=this.vel;
         }
     }
@@ -80,7 +80,7 @@ class Nave{
         //    this.x+=10;
         //}
         //ARREGLO
-        if(this.x+150+this.vel<document.getElementById("contsvg").getAttribute("width")){
+        if(this.x+140+this.vel<=800/*(document.getElementById("contenedor").getAttribute("width"))*/){
             this.x+=this.vel;
         }
     }
@@ -135,20 +135,25 @@ class Disparo{
         this.disparo.setAttribute(("y"),this.y+"px");
     }
 }
-<<<<<<< HEAD
-
-class Juego
-=======
 class Juego{
-    constructor(){
+    constructor(contenedor){
         this.marcianos=[];
-        for(i=0;i<15;i++){
-            this.marcianos[i]=new Marciano("marciano"+i,0,0);
-            document.getElementById("contenedor").appendChild(this.marcianos[i].marc);
+        this.ax=50;
+        this.ay=50;
+        var cont=0;
+        for(var i=0;i<3;i++){
+            for(var j=0;j<5;j++){
+                this.marcianos[cont]=new Marciano("marciano"+cont,this.ax,this.ay);
+                document.getElementById(contenedor).appendChild(this.marcianos[cont].marc);
+                this.ax+=70;
+                cont++;
+            }
+            this.ay+=70;
+            this.ax=50;
         }
-        this.nave=new Nave("nave",500,800);
+        this.nave=new Nave("nave",500,720);
         this.nave.dibuja();
-        document.getElementById("contenedor").appendChild(this.nave.nave);
+        document.getElementById(contenedor).appendChild(this.nave.nave);
         document.body.addEventListener("keydown",(event)=>{
             if(event.keyCode==37){
                 this.nave.moverIzq();
@@ -160,11 +165,13 @@ class Juego{
         })
     }
     empezar(){
-        
+        setInterval(()=>{
+            for(var i=0;i<this.marcianos.length;i++){
+                this.marcianos[i].mueve();
+                this.marcianos[i].dibuja();
+            }
+        },100);
     }
 }
-<<<<<<< HEAD
-var juego = new Juego();
-=======
->>>>>>> 23edb1d0899e3cf7dec6c422c8f3f4869c197caa
->>>>>>> 35cad05b232e0b595854a6bf4575cd3fc4e0aab7
+var juego = new Juego("contenedor");
+juego.empezar();
