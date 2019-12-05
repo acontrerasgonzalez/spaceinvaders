@@ -6,6 +6,8 @@ class Marciano{
         this.y=y;
         this.vel=50;
         this.colision=false;
+        this.maxtamx=document.getElementById("contenedor").getAttribute("width");
+        this.maxtamx=this.maxtamx.replace("px","");
         this.marc.setAttribute(("id"),this.id);
         this.marc.setAttribute(("x"),this.x+"px");
         this.marc.setAttribute(("y"),this.y+"px");
@@ -16,10 +18,10 @@ class Marciano{
     /*ya que el movimiento se produce sobre un bloque de marcianos va a ser un metodo de la clase
     juego*/
     mueve(){//movimiento fijo de 10px si llega al final salta de linea 
-        if((this.x+this.vel)<=document.getElementById("contenedor").getAttribute("width")){
+        if((this.x+this.vel+50)<=this.maxtamx/*document.getElementById("contenedor").getAttribute("width")*/){
             this.x+=this.vel;
         }else
-        if((this.x+this.vel)>=document.getElementById("contenedor").getAttribute("width")){
+        if((this.x+this.vel)+50>=this.maxtamx/*document.getElementById("contenedor").getAttribute("width")*/){
             this.y+=50;
             this.cambioDireccion();
         }
@@ -167,10 +169,27 @@ class Juego{
     empezar(){
         setInterval(()=>{
             for(var i=0;i<this.marcianos.length;i++){
-                this.marcianos[i].mueve();
+                if((this.marcianos[i].x+this.marcianos[i].vel+50)<=this.marcianos[i].maxtamx/*document.getElementById("contenedor").getAttribute("width")*/){
+                    this.marcianos[i].x+=this.marcianos[i].vel;
+                }else
+                if((this.marcianos[i].x+this.marcianos[i].vel)+50>=this.marcianos[i].maxtamx/*document.getElementById("contenedor").getAttribute("width")*/){      
+                    for(var j=0;j<this.marcianos.length;j++){
+                        this.marcianos[j].y+=50;
+                        this.marcianos[j].vel=-this.marcianos[j].vel;
+                }
+                }
+                if((this.marcianos[i].x+this.marcianos[i].vel)>=0/*document.getElementById("contenedor").getAttribute("width")*/){
+                    this.marcianos[i].x+=this.marcianos[i].vel;
+                }else
+                if((this.marcianos[i].x+this.marcianos[i].vel)<=0/*document.getElementById("contenedor").getAttribute("width")*/){            
+                    for(var j=0;j<this.marcianos.length;j++){
+                        this.marcianos[j].y+=50;
+                        this.marcianos[j].vel=-this.marcianos[j].vel;
+                }
+                }
                 this.marcianos[i].dibuja();
             }
-        },100);
+        },500);
     }
 }
 var juego = new Juego("contenedor");
