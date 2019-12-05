@@ -1,3 +1,3 @@
-# spaceinvaders
-spaceInvader antonio vfdy adrian  Contreras
-Juego SpaceInvader desarrollado en java .
+SPACE INVADERS
+Desarrollado en javascript
+Desarrolladores:Antonio Ramirez Lobato y Adrian Contreras González
